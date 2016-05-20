@@ -25,6 +25,9 @@ and what you should write is the sayHi function that makes the code above work,
 
 
   //Code Here for first
+  function first(names, callback) {
+    callback(names[0]);
+  }
   
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -40,6 +43,9 @@ first(names, function(firstName){
 
 
   //Code Here for last
+  var last = function(names, callback){
+    callback(names[names.length-1]);
+  }
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -57,6 +63,11 @@ last(names, function(lastName){
 
 
   //Code Here for multiply
+  var multiply = function (num1, num2, callback) {
+    var answer = num1*num2;
+    callback(answer);
+  }
+
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -73,6 +84,15 @@ multiply(4, 3, function(answer){
 
 
   //Code Here for contains
+  var contains = function (array, name, callback){
+    for (var i = 0; i < array.length; i++) {
+      if (array[i] === name) {
+        return callback(true);
+      }
+    }
+    return callback(false);
+  }
+
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -92,6 +112,16 @@ contains(names, 'Colt', function(result){
 
 
     //Code Here for uniq
+    var uniq = function(names, callback){
+      var uniqArr = [];
+      for (var i = 0; i < names.length; i++) {
+        if(uniqArr.indexOf(names[i]) === -1){
+          uniqArr.push(names[i]);
+        }
+      }
+      return callback(uniqArr);
+    }
+      
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -107,6 +137,11 @@ uniq(names, function(uniqArr){
 
 
     //Code Here for each
+    var each = function (names, callback) {
+      for (var i = 0; i < names.length; i++) {
+        callback(names[i], i);
+      }
+    }
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -123,6 +158,14 @@ each(names, function(item, indice){
 
 
  //code here for getUserById
+
+ var getUserById = function (users, thisID, callback) {
+   for(var x in users){
+    if (users[x].id === thisID) {
+      return callback(users[x]);
+    }
+   }
+ }
 
 var users = [
   {
